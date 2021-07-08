@@ -10,15 +10,13 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
-import ExpandLess from '@material-ui/icons/ExpandLess';
+
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { useEffect } from 'react';
 import { AccordionDetails, AccordionSummary, IconButton, Typography } from '@material-ui/core';
 import LabelImportantRoundedIcon from '@material-ui/icons/LabelImportantRounded';
 import LayersIcon from '@material-ui/icons/Layers';
 import { Accordion } from '@material-ui/core';
-import { type } from 'os';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
