@@ -10,6 +10,8 @@ import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import logger from 'redux-logger';
 import {Store } from "./Store/Store";
+//_INITIAL_DATA_.type=""
+//_INITIAL_DATA_. data=null
 
 export const store=createStore(DiagramReducer,
   composeWithDevTools(

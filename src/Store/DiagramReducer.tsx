@@ -1,6 +1,5 @@
-import go, { CommandHandler, Margin, Model, Size, TextBlock } from "gojs";
+import go, { CommandHandler, Margin, Model, Panel, Size, TextBlock } from "gojs";
 import { AnyAction } from "redux";
-import { onselectField, onSelectionChanged, onSelectionChanged2, onunselectField } from "../Layouts/Layout";
 import Corbeille from '../icons/icons8-trash-50.png';
 import menu from '../icons/icons8-menu-vertical-100.png';
 import zero from '../icons/nombre0.png'
@@ -9,7 +8,11 @@ import one from '../icons/nombre1.png'
 
 
   export class InitialDiagramComponents{
-    
+
+  public component_selected:any;
+    public componenttype:string="";
+    static c:string;
+   
     $=go.GraphObject.make;
     nodeDataArray=[]
     linkDataArray=[];
@@ -39,10 +42,15 @@ import one from '../icons/nombre1.png'
                 anim.start();
               },
                model:this.model });
-          
+               compotype=(newcomponenttype: any)=> {
+                this.componenttype = newcomponenttype;
+              };
+              getcompotype=()=> {
+                return this.componenttype ;
+              };
     init=():go.Diagram=>{ 
     let diagram=this.diagram 
-    diagram.currentTool.doCancel()
+    let compotype=(f:any)=>{this.compotype(f)}
    
     let changeColor=(diagram: go.Diagram, type: any,source:any,item:any)=> {
       // Always make changes in a transaction, except when initializing the diagram.
@@ -279,12 +287,13 @@ import one from '../icons/nombre1.png'
 
           
 
-            this.$("ContextMenuButton",{contextMenu:nodcontext},
+           /* this.$("ContextMenuButton",
+            this.$("Button",{contextMenu:nodcontext},
             this.$(go.TextBlock, "Type",{margin:new go.Margin(0,25,0,3)}),
             {  click: function(e, button) {
-              var node = button.part;
+              var node = button.part?.part
               if(node!==null)
-                {var button_coordinates=button.getDocumentPoint(go.Spot.BottomCenter);
+                {var button_coordinates=button.getDocumentPoint(go.Spot.Right);
                 diagram.toolManager.contextMenuTool.positionContextMenu = function(contextMenu, obj) {
                   var b = contextMenu.measuredBounds;
                   
@@ -293,8 +302,8 @@ import one from '../icons/nombre1.png'
                 e.diagram.commandHandler.showContextMenu(button);}
             }},
             this.$(go.Picture, {width: 20, height: 17,source:Corbeille,alignment:go.Spot.TopRight,background:"#424242" }),
-            )
-            ,
+            ))
+            ,*/
 
             this.$("ContextMenuButton",
             this.$(go.TextBlock, "Index",{margin:new go.Margin(0,25,0,3)}),
@@ -388,16 +397,39 @@ import one from '../icons/nombre1.png'
                              // allow the user to select items -- the background color indicates whether "selected"
                               //?? maybe this should be more sophisticated than simple toggling of selection
                               click: function(e, item) {
+                                
+                                const bar=document.getElementById("right_sidebar");
+                                const grid=document.getElementById("grid-container");
                                 // assume "transparent" means not "selected", for items
                                if(item.diagram!==null)
                                { var oldskips = item.diagram.skipsUndoManager;
                                 
                                item.diagram.skipsUndoManager = true ;
                                 if (item.background === "transparent") {
-                                  item.background = "dodgerblue"; onselectField(item) ;
+                                  item.background = "dodgerblue";
+                                 globalThis.r="field"
+                                  /*const nodeprop=() => (<div><Field_Propreties ></Field_Propreties></div>)
+                                  const TitleSubtitleComponent = React.createElement(
+                                      nodeprop,
+                                      { data:field.portId},
+                                    );*/
+
+                                  if(bar!==null && grid!==null){
+                                    
+
+                                     // bar.firstChild?.replaceWith(TitleSubtitleComponent as any)
+                                     compotype("field");
+                                     InitialDiagramComponents.c="node"
+                                     //component_selected=item;
+                                     // (globalThis as any).$sn =field.portId;
+                                      bar.style.width = "250px";  
+                                  } 
+
                                 } else {
-                                  item.background = "transparent";  onunselectField() ;
-                                }
+                                  if(bar!==null && grid!==null){
+                                  item.background = "transparent"; 
+                                  bar.style.width = "0px" ;global.r=""
+                                }}
                                 item.diagram.skipsUndoManager = oldskips;} 
                               }
                             }, this.$(go.TextBlock,
@@ -501,7 +533,34 @@ import one from '../icons/nombre1.png'
                     
       this.$(go.Node,
          // don't bother with any selection adornme
-        {    selectionChanged: onSelectionChanged },
+        {    selectionChanged: function name(node: any) {
+          
+          const bar=document.getElementById("right_sidebar");
+          const grid=document.getElementById("grid-container");
+      /*
+          const nodeprop=() => (<div><Node_Propreties ></Node_Propreties></div>)
+          const TitleSubtitleComponent = React.createElement(
+              nodeprop,
+              { data:node.part?.data.key},
+            );*/
+          if(bar!==null && grid!==null){
+          if (node.isSelected){
+            globalThis.r="node"
+            compotype("node");
+            InitialDiagramComponents.c="node"
+            //InitialDiagramComponents.component_selected=node;
+              // bar.firstChild?.replaceWith(TitleSubtitleComponent as any)
+              //(globalThis as any).$sn=node.part?.data.key;
+              bar.style.width = "250px"; 
+          }
+          else
+   {
+    bar.style.width = "0";  
+      global.r=""
+
+   } }
+          
+        } },
                                        "Auto",  // the whole node panel
                                        { selectionAdorned: false,
                                          resizable: true,movable: true,
@@ -605,7 +664,28 @@ import one from '../icons/nombre1.png'
                     )  // end Table Panel
                     ) 
      this.diagram.linkTemplate =
-                          this.$(go.Link,{selectionChanged:onSelectionChanged2}, // the whole link panel
+                          this.$(go.Link,{selectionChanged:
+                          function name(link:any) {
+                           
+                            const bar=document.getElementById("right_sidebar");
+                            const grid=document.getElementById("grid-container");
+                           if(bar!==null && grid!==null){
+                           if (link.isSelected){
+                            globalThis.r ="link"
+                           
+
+                            compotype("link");
+                            InitialDiagramComponents.c="link";
+                          //(globalThis as any).$sn= link.part?.data.from; 
+                          bar.style.width = "250px";   
+                          }
+    
+  else
+   {
+    global.r =""
+    bar.style.width = "0";
+   }}
+                          }}, // the whole link panel
                                            {relinkableFrom: true, relinkableTo: true, // let user reconnect links
                                             toShortLength: 4, 
                                             fromShortLength: 2,
@@ -641,13 +721,24 @@ import one from '../icons/nombre1.png'
                           this.$(go.Shape) ,
                        
                           
-                          this.$(go.Picture, {width: 15, height: 15,source:one, segmentIndex: 0.1, 
-                            segmentFraction: 0.5 }, ),
+                          this.$(go.Picture, 
+                            {width: 15, 
+                             height: 15,
+                             name:"from",
+                             source:one, 
+                             segmentIndex: 0.1, 
+                             segmentFraction: 0.5,
+                           /* onclick:function (e: any ,obj:any) {
+                              alert(obj.part.data.key);
+                              var obj=obj.findObject("from")
+                              obj.source=one
+                            } */},
+                              ),
                            
 
                           
                             this.$(go.Picture, 
-                            { segmentIndex: -1, segmentFraction: 0.5, width: 15, height: 15,source:zero, })
+                            { segmentIndex: -1, segmentFraction: 0.5, width: 15, height: 15,source:zero,name:"to", })
                         );
     
                         

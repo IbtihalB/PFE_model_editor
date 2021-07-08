@@ -1,21 +1,110 @@
-import go, { Diagram } from 'gojs';
-import { Point, Rect, Size, Margin, Spot } from 'gojs';
+
 import React, { Fragment } from 'react'
-import { connect, ConnectedProps } from 'react-redux';
-import { Store } from '../../Store/Store';
 //import  '../App.css';
-import TextField from '@material-ui/core/TextField/TextField';
-import { makeStyles, Theme, createStyles } from '@material-ui/core';
-import { useEffect } from 'react';
+import { makeStyles, Theme, createStyles, Accordion, AccordionDetails, AccordionSummary, Typography, AccordionActions, Button, Chip, Divider } from '@material-ui/core';
+import { useState } from 'react';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-
-export default function Node_Propreties() {
-    return (
-        <div>
-            <h1>node</h1>
-        </div>
-    )
+interface prop{
+  render:(props: any) => JSX.Element
 }
+
+
+   const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: '100%',     
+       backgroundColor: "transparent", 
+       height:"5%"
+
+    },
+    heading: {
+      backgroundColor: "transparent", 
+      fontSize: theme.typography.pxToRem(15),
+      marginTop:"-6px"
+    },
+    secondaryHeading: {backgroundColor: "transparent", 
+      fontSize: theme.typography.pxToRem(15),
+      color: theme.palette.text.secondary,
+    },
+    icon: {
+      verticalAlign: 'bottom',
+      height: 20,
+      width: 20,
+    },
+    details: {backgroundColor: "transparent", 
+      alignItems: 'center',
+    },
+    column: {
+      flexBasis: '33.33%', backgroundColor: "transparent", 
+      marginTop:"-30px"
+    },
+    
+    accordsum:{
+      backgroundColor: "transparent", 
+        height:'10%'
+    },
+    textfield:{
+      height:'5%'
+    },
+     input:{
+      marginTop:"-30px"
+  }
+  }),
+ 
+);
+const  Node_Propreties: React.FC<prop> = (props: prop) =>{
+  const classes = useStyles();
+
+  /* const { setData } = props;
+   const [e,sete]=React.useState()
+   const {render}=props<div>{render({ setData })} </div>
+       <div>{data} </div>
+       <AccordionActions>
+         
+          <Button size="small" color="primary">
+            Edit
+          </Button>
+        </AccordionActions>*/
+   const [data, setData] = useState();
+   const { render } = props;
+
+
+  return (
+    <div className={classes.root}>
+      <Divider></Divider>
+    <div className={classes.root}>
+      <Accordion defaultExpanded>
+        <AccordionSummary
+          aria-controls="panel1c-content"
+          id="panel1c-header" className={classes.accordsum}
+        >
+          <div >
+            <Typography className={classes.heading}>Propreties</Typography>
+            <ExpandMoreIcon />
+          </div>
+         
+        </AccordionSummary>
+        <AccordionDetails className={classes.details}>
+        
+          <div className={classes.column} > <p> Name </p></div>
+          <div className={classes.input}>
+          <input type="email" className=" form-control-sm" id="exampleFormControlInput1" placeholder="nom de table"/>
+
+          </div>
+          
+        </AccordionDetails>
+        <Divider />
+        
+      </Accordion>
+    </div></div>
+  );
+}
+   
+    
+
+export default Node_Propreties
+
 
 
 

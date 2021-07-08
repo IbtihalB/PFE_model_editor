@@ -2,9 +2,9 @@
   import * as go from 'gojs';
   import  {ReactDiagram}  from 'gojs-react';
   import  '../App.css';
-  import React, { LegacyRef, useEffect, useRef } from "react";
+  import React from "react";
 
-import { Store} from '../Store/Store'
+  import { Store} from '../Store/Store'
 
 
   
