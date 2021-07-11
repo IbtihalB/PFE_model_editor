@@ -5,6 +5,7 @@
   import React from "react";
 
   import { Store} from '../Store/Store'
+import { connect, ConnectedProps } from 'react-redux';
 
 
   
@@ -31,9 +32,7 @@
 }*/
 
 
-function Creation_modal() {
-    
-}
+
 
 
 
@@ -41,12 +40,19 @@ function Creation_modal() {
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 
 
-export  const DiagramP:React.FC =()=>{
+ const DiagramP:React.FC <PropsFromRedux>=(props:PropsFromRedux)=>{
   /*const dispatch = useAppDispatch();
   useEffectlayout(() => {
     dispatch(CreateDiagram());
   })*/
   
+  var model:any=document.getElementById("mySavedModel")
+     let save=() =>{
+
+       if(model!==null)
+       (model as any).value =props.diagram.model.toJson();
+      props.diagram.isModified = true;
+     }
   const diagram_initial = Store.useAppSelector((Istate) => Istate.init);
   const nodeDataArray=Store.useAppSelector((state)=>state.nodeDataArray);  
   window.addEventListener('DOMContentLoaded', diagram_initial);
@@ -59,11 +65,11 @@ export  const DiagramP:React.FC =()=>{
       initDiagram={diagram_initial}
       divClassName='diagram-component'
       nodeDataArray={nodeDataArray} 
-      skipsDiagramUpdate={true}
-      
+      skipsDiagramUpdate={true}  
     />  
-    
-     </div>   
+     </div> 
+     <div id="a">
+     <textarea id="mySavedModel"></textarea></div>
         </div>
     
         );}
@@ -72,7 +78,19 @@ export  const DiagramP:React.FC =()=>{
 
 
 
-function useEffectlayout(arg0: () => void) {
-  throw new Error('Function not implemented.');
-}
+        const mapState = (state:Store.RootState ) => ({
+         
+          diagram:state.diagram
+          //selected_component:component_selected
+        })
+        
+        const mapDispatch = {
+         
+        }
+        const connector = connect(mapState, mapDispatch);
+        
+        // The inferred type will look like:
+        // {isOn: boolean, toggleOn: () => void}
+        type PropsFromRedux = ConnectedProps<typeof connector>;
+        export default connector(DiagramP);
 
