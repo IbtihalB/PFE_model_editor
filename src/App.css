@@ -288,8 +288,10 @@ grid-template-areas:
 .diagram-component {
   width: 2.9fr;
   }}
+  #a {
+    width:2.9fr;
+  }
   
- 
 
 
 

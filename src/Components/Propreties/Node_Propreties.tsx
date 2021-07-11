@@ -1,10 +1,14 @@
 
 import React, { Fragment } from 'react'
 //import  '../App.css';
-import { makeStyles, Theme, createStyles, Accordion, AccordionDetails, AccordionSummary, Typography, AccordionActions, Button, Chip, Divider } from '@material-ui/core';
+import { makeStyles, Theme, createStyles, Accordion, AccordionDetails, AccordionSummary, Typography, AccordionActions, Button, Chip, Divider, Checkbox, FormControlLabel, FormGroup } from '@material-ui/core';
 import { useState } from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import { Margin } from 'gojs';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import TextField from '@material-ui/core/TextField';
 interface prop{
   render:(props: any) => JSX.Element
 }
@@ -15,14 +19,11 @@ interface prop{
     root: {
       width: '100%',     
        backgroundColor: "transparent", 
-       height:"5%"
+       height:"14%",
+       
 
     },
-    heading: {
-      backgroundColor: "transparent", 
-      fontSize: theme.typography.pxToRem(15),
-      marginTop:"-6px"
-    },
+    
     secondaryHeading: {backgroundColor: "transparent", 
       fontSize: theme.typography.pxToRem(15),
       color: theme.palette.text.secondary,
@@ -33,29 +34,58 @@ interface prop{
       width: 20,
     },
     details: {backgroundColor: "transparent", 
-      alignItems: 'center',
+      
+      marginTop:"-25px"
     },
     column: {
       flexBasis: '33.33%', backgroundColor: "transparent", 
-      marginTop:"-30px"
+      marginTop:"-20px",marginLeft:"-5px",color:"white"
     },
     
     accordsum:{
       backgroundColor: "transparent", 
-        height:'10%'
+        height:'10%',
+        marginTop:"-20px",marginLeft:"-5px"
+      
     },
     textfield:{
       height:'5%'
     },
      input:{
-      marginTop:"-30px"
+      marginTop:"-20px",marginLeft:"15px"
+  },
+  heading: {
+    backgroundColor: "transparent", 
+    fontSize: theme.typography.pxToRem(15),
+    marginTop:"-12px",color:"white"
+  },
+  expand:{
+    marginTop:"-51px",
+    marginLeft:"200px",
+    color:"white"
+  },
+  component:{
+    marginTop:"1px"
+  },
+  table:{
+    marginTop:'-7px'
   }
+
   }),
  
 );
-const  Node_Propreties: React.FC<prop> = (props: prop) =>{
+const  Node_Propreties: React.FC = () =>{
   const classes = useStyles();
+  const [state, setState] = React.useState({
+    
+    checkedB: true,
+    checkedF: true,
+    checkedG: true,
+  });
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
+  };
   /* const { setData } = props;
    const [e,sete]=React.useState()
    const {render}=props<div>{render({ setData })} </div>
@@ -65,39 +95,221 @@ const  Node_Propreties: React.FC<prop> = (props: prop) =>{
           <Button size="small" color="primary">
             Edit
           </Button>
-        </AccordionActions>*/
+        </AccordionActions>
    const [data, setData] = useState();
-   const { render } = props;
+   const { render } = props;*/
 
 
   return (
-    <div className={classes.root}>
-      <Divider></Divider>
-    <div className={classes.root}>
-      <Accordion defaultExpanded>
+    <div>
+     
+    <div className={classes.component}>
+      <Accordion  className={classes.root}>
         <AccordionSummary
           aria-controls="panel1c-content"
           id="panel1c-header" className={classes.accordsum}
+          
         >
           <div >
-            <Typography className={classes.heading}>Propreties</Typography>
-            <ExpandMoreIcon />
+            <Typography className={classes.heading}>Propreties</Typography>  
+            <ExpandMore className={classes.expand}></ExpandMore>
           </div>
          
         </AccordionSummary>
         <AccordionDetails className={classes.details}>
         
-          <div className={classes.column} > <p> Name </p></div>
+          <div > <p className={classes.column}> Name </p></div>
           <div className={classes.input}>
-          <input type="email" className=" form-control-sm" id="exampleFormControlInput1" placeholder="nom de table"/>
-
+          <input type="email" className=" form-control-sm" id="exampleFormControlInput1" placeholder="nom de table" />
           </div>
+         
           
         </AccordionDetails>
-        <Divider />
+        
         
       </Accordion>
-    </div></div>
+      <Accordion  className={classes.root}>
+        <AccordionSummary
+          aria-controls="panel1c-content"
+          id="panel1c-header" className={classes.accordsum}
+          
+        >
+          <div >
+            <Typography className={classes.heading}>Triggers</Typography>  
+            <ExpandMore className={classes.expand}></ExpandMore>
+          </div>
+         
+        </AccordionSummary>
+        <AccordionDetails className={classes.details}>
+        
+        <FormGroup >
+        <FormControlLabel
+        label="Primary"
+        control={
+          <Checkbox
+            checked={state.checkedB}
+            onChange={handleChange}
+            name="checkedB"
+            color="primary"
+            icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+            checkedIcon={<CheckBoxIcon fontSize="small" />}
+          />
+        }
+        
+      />
+       <FormControlLabel       
+        label="Pri"
+        control={
+          <Checkbox
+            checked={state.checkedB}
+            onChange={handleChange}
+            name="checkedF"
+            color="primary"
+            icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+            checkedIcon={<CheckBoxIcon fontSize="small" />}
+          />
+        }
+
+      />
+       <FormControlLabel
+       label="Primary"
+        control={
+          <Checkbox
+            checked={state.checkedB}
+            onChange={handleChange}
+            name="checkedG"
+            color="primary"
+            icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+            checkedIcon={<CheckBoxIcon fontSize="small" />}
+          />
+        }
+        
+      />
+      </FormGroup>
+
+        </AccordionDetails>
+        <button type="button" className="btn btn-primary" > Edit </button>
+
+        
+        
+      </Accordion>
+      <Accordion  className={classes.root}>
+        <AccordionSummary
+          aria-controls="panel1c-content"
+          id="panel1c-header" className={classes.accordsum}
+          
+        >
+          <div >
+            <Typography className={classes.heading}>Attributes</Typography>  
+            <ExpandMore className={classes.expand}></ExpandMore>
+          </div>
+         
+        </AccordionSummary>
+        <AccordionDetails className={classes.details}>
+        
+        <FormGroup >
+        <FormControlLabel
+        label="Primary"
+        control={
+          <Checkbox
+            checked={state.checkedB}
+            onChange={handleChange}
+            name="checkedB"
+            color="primary"
+            icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+            checkedIcon={<CheckBoxIcon fontSize="small" />}
+          />
+        }
+        
+      />
+       <FormControlLabel
+       label="Primary"
+        control={
+          <Checkbox
+            checked={state.checkedB}
+            onChange={handleChange}
+            name="checkedF"
+            color="primary"
+            icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+            checkedIcon={<CheckBoxIcon fontSize="small" />}
+          />
+        }
+        
+      />
+       <FormControlLabel
+        control={
+          <Checkbox
+          
+            checked={state.checkedB}
+            onChange={handleChange}
+            name="checkedG"
+            color="primary"
+          />
+        }
+        labelPlacement="start"
+        label="Primary"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={state.checkedB}
+            onChange={handleChange}
+            name="checkedG"
+            color="primary"
+          />
+        }
+        label="Primary"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={state.checkedB}
+            onChange={handleChange}
+            name="checkedG"
+            color="primary"
+          />
+        }
+        label="Primary"
+      />
+      </FormGroup>
+          
+        </AccordionDetails>
+        
+        
+      </Accordion>
+      <Accordion  className={classes.root}>
+        <AccordionSummary
+          aria-controls="panel1c-content"
+          id="panel1c-header" className={classes.accordsum}
+          
+        >
+          <div >
+            <Typography className={classes.heading}>Comments</Typography>  
+            <ExpandMore className={classes.expand}></ExpandMore>
+          </div>
+         
+        </AccordionSummary>
+        <AccordionDetails className={classes.details}>
+        
+          <div > <p className={classes.column}>  </p></div>
+          
+          <TextField
+         id="outlined-multiline-static"
+         
+         multiline
+         rows={4}
+         defaultValue="Default Value"
+         variant="outlined"
+        />
+          
+         
+          
+        </AccordionDetails>
+        
+        
+      </Accordion>
+      </div>
+    </div>
   );
 }
    

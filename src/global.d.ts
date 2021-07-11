@@ -4,7 +4,7 @@ type InitialData ={
   };
  
    declare var _INITIAL_DATA_: InitialData=<InitialData>{type="",data=null};
-   declare  var r:string="";
+   declare  var r:string;r="re"
 
  
 

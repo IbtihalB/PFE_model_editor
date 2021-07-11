@@ -17,6 +17,7 @@ import { AccordionDetails, AccordionSummary, IconButton, Typography } from '@mat
 import LabelImportantRoundedIcon from '@material-ui/icons/LabelImportantRounded';
 import LayersIcon from '@material-ui/icons/Layers';
 import { Accordion } from '@material-ui/core';
+import go from 'gojs';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -205,7 +206,6 @@ const Catalogue:React.FC<PropsFromRedux>=(props:PropsFromRedux)=>{
 
   
   
-  
   return (<Fragment>
     <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -226,7 +226,8 @@ const Catalogue:React.FC<PropsFromRedux>=(props:PropsFromRedux)=>{
         
            <div className={classes.addbutton}>
           <button type="button" className="btn btn-primary" onClick={props.addTable}> New table + </button>
-          </div></Fragment>
+          </div>
+           </Fragment>
 
   );
 }
@@ -235,6 +236,7 @@ const Catalogue:React.FC<PropsFromRedux>=(props:PropsFromRedux)=>{
 
 const mapState = (state:Store.RootState ) => ({
   nodeDataArray: state.diagram.model.nodeDataArray,
+  diagram: state.diagram
 })
 
 const mapDispatch = {

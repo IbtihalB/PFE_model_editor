@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import  Catalogue  from '../Components/Catalogue';
-import { DiagramP } from '../Components/DiagramP';
+import  DiagramP  from '../Components/DiagramP';
 import Propreties from '../Components/Propreties/Field_Propreties';
 import  '../App.css';
 import Field_Propreties from '../Components/Propreties/Field_Propreties';
@@ -10,41 +10,50 @@ import { connect, ConnectedProps } from 'react-redux';
 import { Store } from '../Store/Store';
 import { InitialDiagramComponents } from '../Store/DiagramReducer';
 import  { Ps } from '../Components/Propreties/Propretiees';
+import go, { Size } from 'gojs';
+import { Fragment } from 'react';
 
 
 /*var c=count.nodeDataArray
 const [component,setComponent] = React.useState("");
 const [name,setName] = React.useState("");
 const [,setfrom] = React.useState("");
-const [to,setto] = React.useState("");*/
+const [to,setto] = React.useState("");
+<div id="buttons">
+       <button id="loadModel" onClick={()=>load()}>Load</button>
+     </div>*/
 
 //_INITIAL_DATA_.type="node" 
+ 
+function a() {
+  globalThis.r="a"
+}
+function b() {
+  globalThis.r="b"
+}
+function e() {
+  globalThis.r="c"
+}
   
  function Layout (props:PropsFromRedux) {
     InitialDiagramComponents.c="nodeze"
     const [component,setcomp] =React.useState(<div></div>)
-    const [c,setc] =React.useState(globalThis.r)
+    const [c,setc] =React.useState("")
 
     const[d,setd]=React.useState("fg")
      useEffect(() => {
        
        return () => {
-        switch (globalThis.r) {
-          case "node":
+        switch (c) {
+          case "a":
             setcomp(
-            <Node_Propreties render={(props:any) => {
-              const { setData } = props;
-              return <Ps setData={setData} />;
-            }}
+            <Node_Propreties
             />);
             break;
-            case "link":
-              setcomp(<Link_Propreties render={(props:any) => {
-                const { setData } = props;
-                return <Ps setData={setData} />;
-              }}
-              />)
+            case "b":
+              setcomp(<Link_Propreties  />)
               break;
+              case "c": setcomp(<p>hi</p>); break;
           default:
             break;
         }}}
@@ -60,22 +69,32 @@ const [to,setto] = React.useState("");*/
        }
        }*/
        
-     , [globalThis.r])
-   
+     , [c])
+     var model:any=document.getElementById("mySavedModel")
+     
+     function load() {
+       if(model!==null)
+       props.diagram.model = go.Model.fromJson(model.value);
+     }
    
     return (
+      <Fragment>
         <div className="grid-container" id="grid-container">
-        <nav> Navbar {globalThis.r} </nav>
-        <main>Main 
+        <nav> Navbar  
+        <button type="button" className="btn btn-primary" onClick={a}> a  </button>
+        <button type="button" className="btn btn-primary" onClick={b}>  b  </button>
+        <button type="button" className="btn btn-primary" onClick={e}> c </button>
+        </nav>
+        <main> <p>{c}</p>
         <DiagramP></DiagramP></main>
-        <div  className="sidebar"> <Catalogue> {global.r}</Catalogue></div>
-        <div  id="right_sidebar">  {component}
-            </div>
-        </div>
+        <div  className="sidebar"> <Catalogue>{c} {c}</Catalogue></div>
+        <div  id="right_sidebar"> <Link_Propreties  />  </div>
+    </div> </Fragment>
     );
 }
 const mapState = (state:Store.RootState ) => ({
     componenttype:  state.getcompotype() ,
+    diagram:state.diagram
     //selected_component:component_selected
   })
   
