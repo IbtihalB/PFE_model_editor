@@ -8,43 +8,7 @@
 import { connect, ConnectedProps } from 'react-redux';
 
 
-  
-  // contains .diagram-component CSS
-  
-  // ...
-
-  /**
-   * Diagram initialization method, which is passed to the ReactDiagram component.
-   * This method is responsible for making the diagram and initializing the model and any templates.
-   * The model's data should not be set here, as the ReactDiagram component handles that via the other props.
-   */
-   
-
-   
- 
-  /**
-   * This function handles any changes to the GoJS model.
-   * It is here that you would make any updates to your React state, which is dicussed below.
-   */
- /* function handleModelChange(null) {
-    
-    alert('The Data model has been updated!');
-}*/
-
-
-
-
-
-
-
-// Use throughout your app instead of plain `useDispatch` and `useSelector`
-
-
  const DiagramP:React.FC <PropsFromRedux>=(props:PropsFromRedux)=>{
-  /*const dispatch = useAppDispatch();
-  useEffectlayout(() => {
-    dispatch(CreateDiagram());
-  })*/
   
   var model:any=document.getElementById("mySavedModel")
      let save=() =>{
@@ -68,8 +32,7 @@ import { connect, ConnectedProps } from 'react-redux';
       skipsDiagramUpdate={true}  
     />  
      </div> 
-     <div id="a">
-     <textarea id="mySavedModel"></textarea></div>
+  
         </div>
     
         );}
