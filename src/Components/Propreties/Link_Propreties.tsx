@@ -1,4 +1,4 @@
-import { makeStyles, Theme, createStyles, Accordion, AccordionSummary, Typography, AccordionDetails, FormControlLabel, Checkbox, TextField, FormControl, InputLabel, NativeSelect, InputBase, withStyles } from '@material-ui/core';
+import { makeStyles, Theme, createStyles, Accordion, AccordionSummary, Typography, AccordionDetails, FormControlLabel, Checkbox, TextField, FormControl, InputLabel, NativeSelect, InputBase, withStyles, Divider } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 import React from 'react'
 import { useState } from 'react';
@@ -10,16 +10,20 @@ import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import CircleChecked from '@material-ui/icons/CheckCircleOutline';
 import CircleCheckedFilled from '@material-ui/icons/CheckCircle';
 import CircleUnchecked from '@material-ui/icons/RadioButtonUnchecked';
+import BallotIcon from '@material-ui/icons/Ballot';
+import { Margin } from 'gojs';
 interface prop{
     render:(props: any) => JSX.Element
   } 
   const BootstrapInput = withStyles((theme: Theme) =>
   createStyles({
     root: {
+      boxShadow:"none",
       'label + &': {
         marginTop: theme.spacing(3),
       },
     },
+   
     input: {
       borderRadius: 4,
       position: 'relative',
@@ -56,11 +60,9 @@ interface prop{
       width: '100%',     
        backgroundColor: "transparent", 
        height:"14%",
-       
-
     },
     
-    secondaryHeading: {backgroundColor: "transparent", 
+    secondaryHeading: {backgroundColor: "transparent",
       fontSize: theme.typography.pxToRem(15),
       color: theme.palette.text.secondary,
     },
@@ -75,13 +77,12 @@ interface prop{
     },
     column: {
       flexBasis: '33.33%', backgroundColor: "transparent", 
-      marginTop:"-20px",marginLeft:"-5px",color:"white"
+      marginTop:"10px",marginLeft:"-5px",color:"white"
     },
     
     accordsum:{
       backgroundColor: "transparent", 
-        height:'10%',
-        marginTop:"-20px",marginLeft:"-5px"
+        marginTop:"-20px",marginLeft:"-5px",
       
     },
     textfield:{
@@ -108,8 +109,115 @@ interface prop{
   },
   margin: {
     margin: theme.spacing(1),
-    width:"190px"
+    width:"150px",marginTop:"-70px",marginLeft:"70px"
   },
+  margin2:{
+    margin: theme.spacing(1),
+    width:"150px",marginTop:"-80px",marginLeft:"70px", 
+  },
+  titleicon:{
+    color:"white",
+    marginTop:"-65px",
+    marginLeft:"-39px",
+  },
+  title:{
+    color:"white",
+    marginTop:"-54px",
+    marginLeft:"-11px"
+  },
+  compdetail:{
+    color:"white",
+    marginTop:"-24px",
+    marginLeft:"85px",
+  },
+  titleComp:{
+   
+    marginTop:"-25px",
+    marginBottom:"23px",
+    marginLeft:"49px",
+    display:"block",
+    
+  },
+  from:{marginTop:"-44px",color:"white",marginLeft:"47px"},
+  to:{
+    marginTop:"-40px",
+    color:"white",
+    marginLeft:"47px"
+  },
+  definition: {marginBottom:"-35px",boxShadow:"none",
+  backgroundColor: "transparent", 
+    'label + &': {
+      marginTop: theme.spacing(3),
+      
+    },
+  },
+  divider:{
+    marginBottom:"5px",
+    color:"black"
+    
+  },
+  option:{
+   boxShadow:"none",marginBottom:"-35px",
+   backgroundColor: "transparent", 
+    'label + &': {
+      marginTop: theme.spacing(3),
+  }},
+  deletion:{
+    boxShadow:"none",marginBottom:"-35px",
+    backgroundColor: "transparent", 
+    'label + &': {
+      marginTop: theme.spacing(3),
+  }},
+  options:{
+    boxShadow:"none",marginBottom:"-35px",
+    backgroundColor: "transparent", 
+     'label + &': {
+       marginTop: theme.spacing(3),
+   }},
+   label:{
+    marginTop:"-20px",
+    marginLeft:"-20px",color:"white"
+   },
+   name:{
+    marginTop:"-44px",color:"white",marginLeft:"47px"
+   },
+   type:{
+    marginTop:"10px" ,
+    marginLeft:"-5px",color:"white"
+   },
+   wild:{
+    marginTop:"-30px" ,
+    marginLeft:"-5px",color:"white"
+   },
+   nameoptions:{
+    marginTop:"-44px",color:"white",marginLeft:"47px"
+
+   },
+   type2:{
+    marginTop:"10px" ,
+    marginLeft:"-5px",color:"white"
+   },
+   secondchekbox:{
+    marginTop:"-20px" ,
+    marginLeft:"-5px",color:"white"
+   },
+   thirdchakbox:{
+    marginTop:"-10px" ,
+    marginLeft:"-5px",color:"white"
+   },
+   fourthcheckbox:{
+    marginTop:"-10px" ,
+    marginLeft:"-5px",color:"white" 
+   },
+   fifthchekbox:{
+    marginTop:"-10px" ,
+    marginLeft:"-5px",
+    color:"white"  
+   },
+   checkboxicon:{
+     marginLeft:"30px"
+   }
+   
 
   }),
  
@@ -171,14 +279,16 @@ interface prop{
     
      
     <div className={classes.component}>
-      <Accordion  className={classes.root}>
+    <div  className={classes.titleComp}> <BallotIcon className={classes.titleicon}> </BallotIcon> <Typography className={classes.title} >  Relation  </Typography > <Typography className={classes.compdetail}>  Table to Table  </Typography> </div>
+
+      <Accordion  className={classes.definition}>
         <AccordionSummary
-          aria-controls="panel1c-content"
-          id="panel1c-header" className={classes.accordsum}
           
-        >
-          <div >
-            <Typography className={classes.heading}>Definition</Typography>  
+          id="panel1c-header" className={classes.accordsum} >
+      <Divider className={classes.divider} ></Divider>
+
+          <div>
+            <Typography className={classes.heading}> Definition </Typography>  
             <ExpandMore className={classes.expand}></ExpandMore>
           </div>
          
@@ -186,25 +296,29 @@ interface prop{
         <AccordionDetails className={classes.details}>
         <FormGroup > 
           <div > <p className={classes.column}> From </p></div>
-          <input type="email" className=" form-control-sm" id="exampleFormControlInput1" placeholder="nom de table" />
-          <br></br>
+         <div className={classes.from}> <input type="email" className=" form-control-sm" id="exampleFormControlInput1" placeholder="From" /></div>
+          
           <div > <p className={classes.column}> To </p></div>
-
-          <input type="email" className=" form-control-sm" id="exampleFormControlInput1" placeholder="nom de table" />
-
+          <div className={classes.to}>
+          <input type="email" className=" form-control-sm" id="exampleFormControlInput1" placeholder="To" />
+         </div>
           </FormGroup>
          
           
         </AccordionDetails>
         
-        
+        <Divider className={classes.divider} ></Divider>
+
       </Accordion>
-      <Accordion  className={classes.root}>
+
+      <Accordion  className={classes.option}>      
         <AccordionSummary
           aria-controls="panel1c-content"
           id="panel1c-header" className={classes.accordsum}
           
         >
+          <Divider className={classes.divider} ></Divider>
+
           <div >
             <Typography className={classes.heading}>Many To One Option</Typography>  
             <ExpandMore className={classes.expand}></ExpandMore>
@@ -213,15 +327,16 @@ interface prop{
         </AccordionSummary>
         <AccordionDetails className={classes.details}>
        <FormGroup > <div > <p className={classes.column}> Name </p></div>
-          <input type="email" className=" form-control-sm" id="exampleFormControlInput1" placeholder="nom de table" />
-          <div > <p className={classes.column}> Type </p></div>
+         <div className={classes.name}><input type="email" className=" form-control-sm" id="exampleFormControlInput1" placeholder="nom de table" /> </div>
+          <div > <p className={classes.type}> Type </p></div>
           <FormControl className={classes.margin}>
-        <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
+        <InputLabel htmlFor="demo-customized-select-native" className={classes.margin}></InputLabel>
         <NativeSelect
           id="demo-customized-select-native"
           value={age}
           onChange={handleChangee}
-          input={<BootstrapInput />}
+          input={<BootstrapInput />
+          }
         >
           <option aria-label="None" value="" />
           <option value={10}>Ten</option>
@@ -229,9 +344,10 @@ interface prop{
           <option value={30}>Thirty</option>
         </NativeSelect>
       </FormControl>
-          <div > <p className={classes.column}> Wildcard Choice </p></div>
-          <FormControl className={classes.margin}>
-        <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
+          <div > <p className={classes.wild}> Wildcard <br></br>
+          Choice </p></div>
+          <FormControl className={classes.margin2}>
+        <InputLabel htmlFor="demo-customized-select-native"></InputLabel>
         <NativeSelect
           id="demo-customized-select-native"
           value={age}
@@ -248,6 +364,7 @@ interface prop{
         <FormControlLabel
          label="Prompt if related one does not exist"
          labelPlacement="start"
+         className={classes.secondchekbox}
         control={
           <Checkbox
             checked={state.checkedB}
@@ -263,6 +380,7 @@ interface prop{
        <FormControlLabel       
         label="Auto Wildcard support"
         labelPlacement="start"
+        className={classes.thirdchakbox}
         control={
           <Checkbox
             checked={state.checkedB}
@@ -280,15 +398,21 @@ interface prop{
 
         </AccordionDetails>
 
-        
-        
+        <Divider className={classes.divider} ></Divider>
+
+      
       </Accordion>
-      <Accordion  className={classes.root}>
+
+
+
+      <Accordion  className={classes.options}>
         <AccordionSummary
           aria-controls="panel1c-content"
           id="panel1c-header" className={classes.accordsum}
           
         >
+                    <Divider className={classes.divider} ></Divider>
+
           <div >
             <Typography className={classes.heading}> One To Many Options</Typography>  
             <ExpandMore className={classes.expand}></ExpandMore>
@@ -297,12 +421,13 @@ interface prop{
         </AccordionSummary>
         <AccordionDetails className={classes.details}>
          <FormGroup ><div > <p className={classes.column}> Name </p></div>
-          <input type="email" className=" form-control-sm" id="exampleFormControlInput1" placeholder="nom de table" />
-          <div > <p className={classes.column}> Type </p></div>
+          <div className={classes.nameoptions}><input type="email" className=" form-control-sm" id="exampleFormControlInput1" placeholder="nom de table" />
+          </div>
+          <div > <p className={classes.type2}> Type </p></div>
           <FormControl className={classes.margin}>
-        <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
+        <InputLabel htmlFor="demo-customized-select-native"></InputLabel>
         <NativeSelect
-          id="demo-customized-select-native"
+          id="demo-customized-select-native sm"
           value={age}
           onChange={handleChangee}
           input={<BootstrapInput />}
@@ -316,14 +441,15 @@ interface prop{
         <FormControlLabel
         label="Auto asking related value in subform"
         labelPlacement='start'
+        className={classes.fourthcheckbox}
         control={
           <Checkbox
             checked={state.checkedB}
             onChange={handleChange}
             name="checkedB"
             color="primary"
-            icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
-            checkedIcon={<CheckBoxIcon fontSize="small" />}
+            icon={<CheckBoxOutlineBlankIcon className={classes.checkboxicon} fontSize="small" />}
+            checkedIcon={<CheckBoxIcon className={classes.checkboxicon} fontSize="small" />}
           />
         }
         
@@ -332,14 +458,18 @@ interface prop{
           
         </AccordionDetails>
         
-        
+              <Divider className={classes.divider} ></Divider>
+
       </Accordion>
-      <Accordion  className={classes.root}>
+
+      <Accordion  className={classes.deletion}>
         <AccordionSummary
           aria-controls="panel1c-content"
           id="panel1c-header" className={classes.accordsum}
           
         >
+        <Divider className={classes.divider} ></Divider>
+
           <div >
             <Typography className={classes.heading}>Deletion Control</Typography>  
             <ExpandMore className={classes.expand}></ExpandMore>
@@ -347,18 +477,19 @@ interface prop{
          
         </AccordionSummary>
         <AccordionDetails className={classes.details}>
-        <FormGroup >
+        <FormGroup className={classes.label}>
         <FormControlLabel
          label="Leave related many intact"
          labelPlacement="start"
+         
         control={
           <Checkbox
             checked={state.checkedB}
             onChange={handleChange}
             name="checkedB"
             color="primary"
-            icon={<CircleUnchecked fontSize="small" />}
-            checkedIcon={<CircleCheckedFilled  fontSize="small" />}
+            icon={<CircleUnchecked  fontSize="small" />}
+            checkedIcon={<CircleCheckedFilled  className={classes.checkboxicon} fontSize="small" />}
           />
         }
         
@@ -372,8 +503,8 @@ interface prop{
             onChange={handleChange}
             name="checkedF"
             color="primary"
-            icon={<CircleUnchecked fontSize="small" />}
-            checkedIcon={<CircleCheckedFilled  fontSize="small" />}
+            icon={<CircleUnchecked className={classes.checkboxicon}fontSize="small" />}
+            checkedIcon={<CircleCheckedFilled className={classes.checkboxicon} fontSize="small" />}
           />
         }
 
@@ -387,8 +518,8 @@ interface prop{
             onChange={handleChange}
             name="checkedF"
             color="primary"
-            icon={<CircleUnchecked fontSize="small" />}
-            checkedIcon={<CircleCheckedFilled fontSize="small" />}
+            icon={<CircleUnchecked className={classes.checkboxicon}fontSize="small" />}
+            checkedIcon={<CircleCheckedFilled className={classes.checkboxicon} fontSize="small" />}
           />
         }
 
@@ -403,7 +534,8 @@ interface prop{
           
         </AccordionDetails>
         
-        
+        <Divider className={classes.divider} ></Divider>
+
       </Accordion>
       </div>
     );

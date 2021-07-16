@@ -18,6 +18,7 @@ import LabelImportantRoundedIcon from '@material-ui/icons/LabelImportantRounded'
 import LayersIcon from '@material-ui/icons/Layers';
 import { Accordion } from '@material-ui/core';
 import go from 'gojs';
+import { model } from '../Layouts/Layout';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -99,9 +100,13 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     item: {
       backgroundColor: 'inherit',
-        marginLeft:'7px',marginTop:'-8px',marginBottom:'1px',boxShadow: "none" , border:"none", hideBorder: { boxShadow: 'none', '&.MuiExpansionPanel-root:before': { display: 'none', }, },
+        marginLeft:'7px',marginTop:'-8px',marginBottom:'5px',boxShadow: "none" , border:"none", hideBorder: { boxShadow: 'none', '&.MuiExpansionPanel-root:before': { display: 'none', }, },
    
      
+    },
+    itemfield:{
+      backgroundColor: 'inherit',
+      marginLeft:'7px',marginTop:'-10px',marginBottom:'-19px',boxShadow: "none"
     },
     itemtext:{
       color:'#c4c4c4',
@@ -111,7 +116,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     addbutton:{
         marginTop:'7px',
-        marginLeft:'50px',
+        marginLeft:'75px',
         
       
     },
@@ -127,6 +132,12 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: theme.typography.fontWeightRegular,
       marginLeft:"5px",border:"none"
     },
+    field:{
+      marginLeft:"-59px",color:"#c4c4c4"
+    },
+    fieldicon:{
+      marginLeft:"-26px",color:"#c4c4c4",height:"16px"
+    }
   }),
 );
 
@@ -158,10 +169,10 @@ const Catalogue:React.FC<PropsFromRedux>=(props:PropsFromRedux)=>{
      
    <div>
    {node.items.map((item:any)=>
-   <ListItem className={classes.item}  ><ListItemIcon>
-          <LabelImportantRoundedIcon className={classes.icon}/>
+   <ListItem className={classes.itemfield}  ><ListItemIcon>
+          <LabelImportantRoundedIcon className={classes.fieldicon}/>
           </ListItemIcon>
-            <ListItemText primary={item.name} className={classes.heading} />
+            <ListItemText primary={item.name} className={classes.field} />
           </ListItem>)}</div>
    </AccordionDetails> 
    </Accordion> 
@@ -170,7 +181,7 @@ const Catalogue:React.FC<PropsFromRedux>=(props:PropsFromRedux)=>{
   ));
 
   useEffect(() => {
-   setNodes(props.nodeDataArray.filter(
+   setNodes( props.nodeDataArray.filter(
      (node)=>{
        if(searchItem=="")
        return node
@@ -192,10 +203,10 @@ const Catalogue:React.FC<PropsFromRedux>=(props:PropsFromRedux)=>{
      
    <div>
    {node.items.map((item:any)=>
-   <ListItem className={classes.item}  ><ListItemIcon>
-          <LabelImportantRoundedIcon className={classes.icon}/>
+   <ListItem className={classes.itemfield}  ><ListItemIcon>
+          <LabelImportantRoundedIcon className={classes.fieldicon}/>
           </ListItemIcon>
-            <ListItemText primary={item.name} className={classes.heading} />
+            <ListItemText primary={item.name} className={classes.field} />
           </ListItem>)}</div>
    </AccordionDetails> 
    </Accordion> 
@@ -227,6 +238,9 @@ const Catalogue:React.FC<PropsFromRedux>=(props:PropsFromRedux)=>{
            <div className={classes.addbutton}>
           <button type="button" className="btn btn-primary" onClick={props.addTable}> New table + </button>
           </div>
+          <br></br>
+          <textarea  value={model}> </textarea>
+      
            </Fragment>
 
   );

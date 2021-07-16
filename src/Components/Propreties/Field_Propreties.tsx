@@ -1,19 +1,18 @@
 import { makeStyles, Theme, createStyles, Accordion, AccordionSummary, Typography, AccordionDetails, FormControlLabel, Checkbox, TextField, FormControl, InputLabel, NativeSelect, InputBase, withStyles } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 import React from 'react'
-
 import { FormGroup } from 'reactstrap';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
-import CircleChecked from '@material-ui/icons/CheckCircleOutline';
-import CircleCheckedFilled from '@material-ui/icons/CheckCircle';
-import CircleUnchecked from '@material-ui/icons/RadioButtonUnchecked';
+import BallotIcon from '@material-ui/icons/Ballot';
+
 interface prop{
     render:(props: any) => JSX.Element
   } 
   const BootstrapInput = withStyles((theme: Theme) =>
   createStyles({
     root: {
+      boxShadow:"none",
       'label + &': {
         marginTop: theme.spacing(3),
       },
@@ -52,7 +51,7 @@ interface prop{
     root: {
       width: '100%',     
        backgroundColor: "transparent", 
-       height:"14%",
+       height:"14%",boxShadow:"none"
        
 
     },
@@ -72,7 +71,7 @@ interface prop{
     },
     column: {
       flexBasis: '33.33%', backgroundColor: "transparent", 
-      marginTop:"-20px",marginLeft:"-5px",color:"white"
+      marginTop:"-3px",marginLeft:"-5px",color:"white"
     },
     
     accordsum:{
@@ -82,14 +81,11 @@ interface prop{
       
     },
     textfield:{
-      height:'5%'
+      marginTop:"-16px"
     },
-    margin: {
-      margin: theme.spacing(1),
-      width:"190px"
-    },
+   
      input:{
-      marginTop:"-20px",marginLeft:"15px"
+      marginTop:"-20px",marginLeft:"15px",color:"white"
   },
   heading: {
     backgroundColor: "transparent", 
@@ -106,7 +102,62 @@ interface prop{
   },
   table:{
     marginTop:'-7px'
-  }
+  },
+  name:{
+    marginTop:"-37px",marginLeft:"48px"
+  },
+  precision:{
+    marginTop:"-45px",marginLeft:"88px",width:"50px"
+  },
+  type:{
+    marginTop:"-41px",marginLeft:"50px",color:"white"
+  },
+  typelabel:{
+    marginTop:"8px",color:"white"
+  },
+  index:{
+    marginTop:"-10px",color:"white",marginLeft:"-5px"
+
+  },
+  margin: {
+    marginTop:"-70px",
+    margin: theme.spacing(1),
+    width:"160px",
+    marginLeft:"55px"
+    
+  },
+  titleicon:{
+    color:"white",
+    marginTop:"-58px",
+    marginLeft:"-45px",
+  },
+  title:{
+    color:"white",
+    marginTop:"-50px",
+    marginLeft:"-20px"
+  },
+  compdetail:{
+    color:"white",
+    marginTop:"-24px",
+    marginLeft:"135px",
+  },
+  titleComp:{
+   
+    marginTop:"-25px",
+    marginBottom:"23px",
+    marginLeft:"49px",
+    display:"block",
+    
+  },
+  tr:{
+    color:"white",marginLeft:"2px",marginBottom:"-10px"
+  },
+  finaltr:{
+    color:"white",marginLeft:"2px",marginBottom:"-10px",marginTop:"10px"
+  },
+ 
+
+
 
   }),
  
@@ -128,46 +179,14 @@ interface prop{
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
-  /* const { setData } = props;
-   const [e,sete]=React.useState()
-   const {render}=props<div>{render({ setData })} </div>
-       <div>{data} </div>
-       <AccordionActions>
-         
-          <Button size="small" color="primary">
-            Edit
-          </Button>
-        </AccordionActions>
-   const [data, setData] = useState();
-   const { render } = props;*/
-   /* const { setData } = props;
-    const [e,sete]=React.useState()
-    const {render}=props
-    const [data, setData] = useState();
-    const { render } = props;  <div>{render({ setData })} </div>
-        <div>{data} </div>
-        /*useEffect(() => {
-        
-        return () => {
-         sete(<div>
-            <h1>{props.c} </h1>
-        </div>)   
-        }
-    }, [props.c])
-    return (
-        <div>  
-        <h1>{render({sete})} </h1>
-    {e} </div>
-       
-    )*/
-    
-     
-
+ 
 
   return (
     
      
     <div className={classes.component}>
+          <div  className={classes.titleComp}> <BallotIcon className={classes.titleicon}> </BallotIcon> <Typography className={classes.title} >  Field  </Typography > <Typography className={classes.compdetail}>  field </Typography> </div>
+
       <Accordion  className={classes.root}>
         <AccordionSummary
           aria-controls="panel1c-content"
@@ -183,15 +202,19 @@ interface prop{
         <AccordionDetails className={classes.details}>
         <FormGroup > 
           <div > <p className={classes.column}> Name </p></div>
-          <input type="email" className=" form-control-sm" id="exampleFormControlInput1" placeholder="nom de table" />
-          <br></br>
-          <div > <p className={classes.column}> Type </p>   <p > Real </p></div>
-
-          <input type="email" className=" form-control-sm" id="exampleFormControlInput1" placeholder="nom de table" />
+         <div className={classes.name}> <input type="email" className=" form-control-sm" id="exampleFormControlInput1" placeholder="nom de champ" />
+         </div> 
+          <div > <p className={classes.typelabel}> Type </p> <p className={classes.type} > Real </p>  </div>
+             <div className={classes.precision}>
+          <input type="email" className=" form-control" id="exampleFormControlInput1" placeholder="precision" />
+          </div>
+          <table>
+            <tr>
           <FormControlLabel
          label="Invisible"
          labelPlacement="start"
-        control={
+         className={classes.tr}
+         control={
           <Checkbox
             checked={state.checkedB}
             onChange={handleChange}
@@ -202,10 +225,13 @@ interface prop{
           />
         }
         
-      />
+      /></tr>
+      <tr>
        <FormControlLabel       
         label="Unique"
         labelPlacement="start"
+        className={classes.tr}
+
         control={
           <Checkbox
             checked={state.checkedB}
@@ -217,7 +243,10 @@ interface prop{
           />
         }
 
-      /><FormControlLabel
+      /></tr>
+      <tr><FormControlLabel
+               className={classes.tr}
+
       label="Expose as Rest resource"
       labelPlacement="start"
      control={
@@ -231,8 +260,9 @@ interface prop{
        />
      }
      
-   />
-    <FormControlLabel       
+   /></tr>
+    <tr ><FormControlLabel 
+    className={classes.tr}      
      label="Reject NULL value input"
      labelPlacement="start"
      control={
@@ -246,8 +276,10 @@ interface prop{
        />
      }
 
-   />
-   <FormControlLabel       
+   /></tr>
+   <tr>
+   <FormControlLabel 
+     className={classes.finaltr}      
      label="Map NULL values to blank values"
      labelPlacement="start"
      control={
@@ -261,7 +293,7 @@ interface prop{
        />
      }
 
-   />
+   /></tr></table>
           </FormGroup>
          
           
@@ -282,9 +314,9 @@ interface prop{
          
         </AccordionSummary>
         <AccordionDetails className={classes.details}>
-       <FormGroup row> <div > <p className={classes.column}> Index </p></div>
+       <FormGroup > <div > <p className={classes.index}> Index </p></div>
        <FormControl className={classes.margin}>
-        <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
+        <InputLabel htmlFor="demo-customized-select-native"></InputLabel>
         <NativeSelect
           id="demo-customized-select-native"
           value={age}
@@ -319,6 +351,7 @@ interface prop{
          <FormGroup >
        
         <FormControlLabel
+        className={classes.input}
         label="Allow Choice list"
         labelPlacement='start'
         control={
@@ -355,7 +388,8 @@ interface prop{
         <AccordionDetails className={classes.details}>
         <TextField
          id="outlined-multiline-static"
-         
+         className={classes.textfield}
+
          multiline
          rows={2}
          defaultValue="Default Value"
@@ -388,7 +422,7 @@ interface prop{
 
          <TextField
          id="outlined-multiline-static"
-         
+         className={classes.textfield}
          multiline
          rows={4}
          defaultValue="Default Value"

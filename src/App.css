@@ -206,6 +206,11 @@
   transition: 0s;
   grid-area: si;
 }
+.diagramjson{
+  width: "auto";
+  grid-area: model;
+  margin-top: 2%;
+}
 nav{
 background-color: #454545;;
 grid-area: nav;
@@ -214,7 +219,7 @@ height:40px;
 main{
   background-color: #302D2D;;
   grid-area: main;
-  height:   680px;
+  margin-top: 20px;
 
 
 }
@@ -236,6 +241,7 @@ grid-template-areas:
   "sidebar  main main  si"
   "sidebar  main main  si"
   "sidebar  main main  si"
+
    ;  
 }
 .diagram-component {
@@ -250,6 +256,7 @@ grid-template-areas:
   "sidebar  main main main si"
   "sidebar  main main main si"
   "sidebar  main main main si"
+
    ; 
    
 }
@@ -265,6 +272,7 @@ grid-template-areas:
   "sidebar  main main main si"
   "sidebar  main main main si"
   "sidebar  main main main si"
+
    ;
    
 }
@@ -282,6 +290,7 @@ grid-template-areas:
   "sidebar main main main main main si"
   "sidebar main main main main main si"
   "sidebar main main main main main si"
+
    ;
    
 }
@@ -289,7 +298,7 @@ grid-template-areas:
   width: 2.9fr;
   }}
   #a {
-    width:2.9fr;
+    width:5fr;
   }
   
 

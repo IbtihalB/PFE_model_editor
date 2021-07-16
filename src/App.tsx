@@ -23,7 +23,7 @@ import Layout from "./Layouts/Layout";
    
     return ( 
       <div>
-      <Layout></Layout>
+      <Layout> </Layout>
       </div>
     
      

@@ -9,6 +9,8 @@ import { Margin } from 'gojs';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import TextField from '@material-ui/core/TextField';
+import BallotIcon from '@material-ui/icons/Ballot';
+
 interface prop{
   render:(props: any) => JSX.Element
 }
@@ -19,13 +21,12 @@ interface prop{
     root: {
       width: '100%',     
        backgroundColor: "transparent", 
-       height:"14%",
+       height:"14%",boxShadow:"none"
        
 
     },
     
     secondaryHeading: {backgroundColor: "transparent", 
-      fontSize: theme.typography.pxToRem(15),
       color: theme.palette.text.secondary,
     },
     icon: {
@@ -35,11 +36,14 @@ interface prop{
     },
     details: {backgroundColor: "transparent", 
       
-      marginTop:"-25px"
+      marginTop:"-52px",
+      marginLeft:"-22px",color:"white",  
+
     },
     column: {
       flexBasis: '33.33%', backgroundColor: "transparent", 
-      marginTop:"-20px",marginLeft:"-5px",color:"white"
+      marginTop:"27px",marginLeft:"16px",color:"#c4c4c4",
+      
     },
     
     accordsum:{
@@ -52,7 +56,7 @@ interface prop{
       height:'5%'
     },
      input:{
-      marginTop:"-20px",marginLeft:"15px"
+      marginTop:"25px",marginLeft:"15px"
   },
   heading: {
     backgroundColor: "transparent", 
@@ -69,7 +73,44 @@ interface prop{
   },
   table:{
     marginTop:'-7px'
-  }
+  },
+  comment:{
+    color:"white",
+    marginTop:"10px",
+    width:"550px",marginLeft:"10px"
+  },
+  titleicon:{
+    color:"white",
+    marginTop:"-59px",
+    marginLeft:"-42px",
+  },
+  title:{
+    color:"white",
+    marginTop:"-51px",
+    marginLeft:"-11px"
+  },
+  compdetail:{
+    color:"white",
+    marginTop:"-24px",
+    marginLeft:"85px",
+  },
+  
+  titleComp:{
+   
+    marginTop:"-25px",
+    marginBottom:"23px",
+    marginLeft:"49px",
+    display:"block",
+    
+  },
+  addbutton:{
+    marginLeft:"90px",
+    marginTop:'-6px'
+  },
+   tr:{
+    marginLeft:"17px",marginBottom:'-10px', color:"#c4c4c4",   
+
+   }
 
   }),
  
@@ -104,11 +145,12 @@ const  Node_Propreties: React.FC = () =>{
     <div>
      
     <div className={classes.component}>
+    <div  className={classes.titleComp}> <BallotIcon className={classes.titleicon}> </BallotIcon> <Typography className={classes.title} >  Table </Typography > <Typography className={classes.compdetail}>  Table to Table  </Typography> </div>
+
       <Accordion  className={classes.root}>
         <AccordionSummary
           aria-controls="panel1c-content"
-          id="panel1c-header" className={classes.accordsum}
-          
+          id="panel1c-header" className={classes.accordsum} 
         >
           <div >
             <Typography className={classes.heading}>Propreties</Typography>  
@@ -142,9 +184,13 @@ const  Node_Propreties: React.FC = () =>{
         </AccordionSummary>
         <AccordionDetails className={classes.details}>
         
-        <FormGroup >
+        <FormGroup row >       
+        
         <FormControlLabel
-        label="Primary"
+        className={classes.tr}
+        labelPlacement="start"
+        label="On saving new record "
+
         control={
           <Checkbox
             checked={state.checkedB}
@@ -158,7 +204,10 @@ const  Node_Propreties: React.FC = () =>{
         
       />
        <FormControlLabel       
-        label="Pri"
+        label="On saving an existing record"
+        labelPlacement="start"
+        className={classes.tr}
+
         control={
           <Checkbox
             checked={state.checkedB}
@@ -172,7 +221,10 @@ const  Node_Propreties: React.FC = () =>{
 
       />
        <FormControlLabel
-       label="Primary"
+       label="On deleting record"
+       labelPlacement="start"
+       className={classes.tr}
+
         control={
           <Checkbox
             checked={state.checkedB}
@@ -188,8 +240,9 @@ const  Node_Propreties: React.FC = () =>{
       </FormGroup>
 
         </AccordionDetails>
+        <div className={classes.addbutton}>
         <button type="button" className="btn btn-primary" > Edit </button>
-
+</div>
         
         
       </Accordion>
@@ -207,9 +260,12 @@ const  Node_Propreties: React.FC = () =>{
         </AccordionSummary>
         <AccordionDetails className={classes.details}>
         
-        <FormGroup >
+        <FormGroup row>
         <FormControlLabel
-        label="Primary"
+        label="Expose as REST resource"
+        labelPlacement="start"
+        className={classes.tr}
+
         control={
           <Checkbox
             checked={state.checkedB}
@@ -223,7 +279,10 @@ const  Node_Propreties: React.FC = () =>{
         
       />
        <FormControlLabel
-       label="Primary"
+       label="Records definitely deleted "
+       labelPlacement="start"
+       className={classes.tr}
+
         control={
           <Checkbox
             checked={state.checkedB}
@@ -247,7 +306,9 @@ const  Node_Propreties: React.FC = () =>{
           />
         }
         labelPlacement="start"
-        label="Primary"
+        label="Enable Replication"
+        className={classes.tr}
+
       />
       <FormControlLabel
         control={
@@ -258,7 +319,10 @@ const  Node_Propreties: React.FC = () =>{
             color="primary"
           />
         }
-        label="Primary"
+        labelPlacement="start"
+        label="Include in Log File"
+        className={classes.tr}
+
       />
       <FormControlLabel
         control={
@@ -269,7 +333,10 @@ const  Node_Propreties: React.FC = () =>{
             color="primary"
           />
         }
-        label="Primary"
+        labelPlacement="start"
+        label="Encryptable"
+        className={classes.tr}
+
       />
       </FormGroup>
           
@@ -293,14 +360,14 @@ const  Node_Propreties: React.FC = () =>{
         
           <div > <p className={classes.column}>  </p></div>
           
-          <TextField
+        <TextField
+        className={classes.comment}
          id="outlined-multiline-static"
-         
          multiline
          rows={4}
          defaultValue="Default Value"
          variant="outlined"
-        />
+         />
           
          
           
