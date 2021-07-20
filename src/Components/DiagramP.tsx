@@ -1,34 +1,21 @@
 
-  import * as go from 'gojs';
   import  {ReactDiagram}  from 'gojs-react';
   import  '../App.css';
   import React from "react";
-
   import { Store} from '../Store/Store'
-import { connect, ConnectedProps } from 'react-redux';
+  import { connect, ConnectedProps } from 'react-redux';
 
 
  const DiagramP:React.FC <PropsFromRedux>=(props:PropsFromRedux)=>{
-  
-  var model:any=document.getElementById("mySavedModel")
-     let save=() =>{
-
-       if(model!==null)
-       (model as any).value =props.diagram.model.toJson();
-      props.diagram.isModified = true;
-     }
-  const diagram_initial = Store.useAppSelector((Istate) => Istate.init);
-  const nodeDataArray=Store.useAppSelector((state)=>state.nodeDataArray);  
-  window.addEventListener('DOMContentLoaded', diagram_initial);
-   
+     
     return(
       
     <div className="diagram_context" >
     <div style={{ position: "relative"}}> 
        <ReactDiagram
-      initDiagram={diagram_initial}
+      initDiagram={props.diagram}
       divClassName='diagram-component'
-      nodeDataArray={nodeDataArray} 
+      nodeDataArray={props.nodedataarray} 
       skipsDiagramUpdate={true}  
     />  
      </div> 
@@ -38,12 +25,11 @@ import { connect, ConnectedProps } from 'react-redux';
         );}
     
 
-
-
-
         const mapState = (state:Store.RootState ) => ({
          
-          diagram:state.diagram
+          diagram:state.init,
+          nodedataarray:state.nodeDataArray
+
           //selected_component:component_selected
         })
         

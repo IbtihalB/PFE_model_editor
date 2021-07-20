@@ -13,11 +13,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { useEffect } from 'react';
-import { AccordionDetails, AccordionSummary, IconButton, Typography } from '@material-ui/core';
+import { AccordionDetails, AccordionSummary, Typography } from '@material-ui/core';
 import LabelImportantRoundedIcon from '@material-ui/icons/LabelImportantRounded';
 import LayersIcon from '@material-ui/icons/Layers';
 import { Accordion } from '@material-ui/core';
-import go from 'gojs';
 import { model } from '../Layouts/Layout';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -137,7 +136,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     fieldicon:{
       marginLeft:"-26px",color:"#c4c4c4",height:"16px"
-    }
+    },
+    text:{width:"320px"}
   }),
 );
 
@@ -158,18 +158,15 @@ const Catalogue:React.FC<PropsFromRedux>=(props:PropsFromRedux)=>{
    <AccordionSummary
      expandIcon={<ExpandMore />}
      aria-controls="panel1a-content"
-     id="panel1a-header" className={classes.itemtext}
-   > 
+     id="panel1a-header" className={classes.itemtext}> 
    <LayersIcon className={classes.icon}/>
-  
-     <Typography className={classes.heading}>{node.key}</Typography>
+   <Typography className={classes.heading}>{node.key}</Typography>
    </AccordionSummary>
-   <AccordionDetails className={classes.listSection}>
-  
-     
+   <AccordionDetails className={classes.listSection}> 
    <div>
    {node.items.map((item:any)=>
-   <ListItem className={classes.itemfield}  ><ListItemIcon>
+   <ListItem className={classes.itemfield}  >
+          <ListItemIcon>
           <LabelImportantRoundedIcon className={classes.fieldicon}/>
           </ListItemIcon>
             <ListItemText primary={item.name} className={classes.field} />
@@ -192,15 +189,11 @@ const Catalogue:React.FC<PropsFromRedux>=(props:PropsFromRedux)=>{
    <AccordionSummary
      expandIcon={<ExpandMore />}
      aria-controls="panel1a-content"
-     id="panel1a-header" className={classes.itemtext}
-   > 
+     id="panel1a-header" className={classes.itemtext} > 
    <LayersIcon className={classes.icon}/>
-  
-     <Typography className={classes.heading}>{node.key}</Typography>
+   <Typography className={classes.heading}>{node.key}</Typography>
    </AccordionSummary>
    <AccordionDetails className={classes.listSection}>
-  
-     
    <div>
    {node.items.map((item:any)=>
    <ListItem className={classes.itemfield}  ><ListItemIcon>
@@ -211,8 +204,7 @@ const Catalogue:React.FC<PropsFromRedux>=(props:PropsFromRedux)=>{
    </AccordionDetails> 
    </Accordion> 
  
- ))
-    
+ ))   
   }, [nodes])
 
   
@@ -228,18 +220,16 @@ const Catalogue:React.FC<PropsFromRedux>=(props:PropsFromRedux)=>{
                 root: classes.inputRoot,
                 input: classes.inputInput,}}
               inputProps={{ 'aria-label': 'search' }}
-              onChange={(event)=>{setsearchItem(event.target.value)}}
-            />
-          </div>
+              onChange={(event)=>{setsearchItem(event.target.value)}} />
+  </div>
       
     <h6  className={classes.title}> Default Catalogue </h6>
-          <div className={classes.menu}><List className={classes.root}>{nodes} </List></div>
-        
-           <div className={classes.addbutton}>
+    <div className={classes.menu}><List className={classes.root}>{nodes} </List></div>
+         <div className={classes.addbutton}>
           <button type="button" className="btn btn-primary" onClick={props.addTable}> New table + </button>
-          </div>
+         </div>
           <br></br>
-          <textarea  value={model}> </textarea>
+         <textarea  className={classes.text}value={model}> </textarea>
       
            </Fragment>
 
