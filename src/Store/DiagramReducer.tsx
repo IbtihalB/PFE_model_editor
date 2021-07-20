@@ -5,6 +5,19 @@ import menu from '../icons/icons8-menu-vertical-100.png';
 import zero from '../icons/nombre0.png'
 import one from '../icons/nombre1.png'
 import n from '../icons/N_im.png'
+import A from '../icons/Alpha.png'
+import T from '../icons/Text.png'
+import date from '../icons/Date.png'
+import time from '../icons/Time.png'
+import picture from '../icons/picture.png'
+import bol from '../icons/boolean.png'
+import brack from '../icons/brack.png'
+import blob from '../icons/diagram.png'
+import num from '../icons/number.png'
+
+
+
+
 import diagram from '../diagram.json'
 
 
@@ -36,7 +49,7 @@ import diagram from '../diagram.json'
                if (fnode !== null) 
                {e.diagram.startTransaction();
                 // node.data.items.type
-                fnode.diagram.model.addArrayItem(arr, {name:"foreign key",type:link.toNode.part.data.key,source:one,isPrimarykey:false,isInvisible:false,isUnique:false,isNeverNull:false,isindexed:false});
+                fnode.diagram.model.addArrayItem(arr, {name:"foreign key",type:link.toNode.part.data.key,isPrimarykey:false,isInvisible:false,isUnique:false,isNeverNull:false,isindexed:false,source:num});
                 e.diagram.commitTransaction("item added");
                } 
                e.diagram.model.setCategoryForLinkData(link.data, cardinality); 
@@ -64,7 +77,7 @@ import diagram from '../diagram.json'
              if (fnode !== null) 
              {e.diagram.startTransaction();
               // node.data.items.type
-              fnode.diagram.model.addArrayItem(arr, {name:"foreign key",type:link.toNode.part.data.key,source:one,isPrimarykey:false,isInvisible:false,isUnique:false,isNeverNull:false});
+              fnode.diagram.model.addArrayItem(arr, {name:"foreign key",type:link.toNode.part.data.key,isPrimarykey:false,isInvisible:false,isUnique:false,isNeverNull:false,source:one});
               e.diagram.commitTransaction("item added");
              } 
              e.diagram.model.setCategoryForLinkData(link.data, cardinality); 
@@ -128,7 +141,7 @@ import diagram from '../diagram.json'
                                    {var node = button.part.adornedObject.panel.panel.part
                                        if (node !== null) {
                                        diagram.startTransaction();
-                                       diagram.model.addArrayItem(node.data.items,{name:"new field",type:"gju",source:one,isPrimarykey:false,isInvisible:false,isUnique:false,isNeverNull:false,isindexed:false});
+                                       diagram.model.addArrayItem(node.data.items,{name:"new field",type:"Alpha",isPrimarykey:false,isInvisible:false,isUnique:false,isNeverNull:false,isindexed:false,source:A});
                                        diagram.commitTransaction("item added");
                                        }
                                   }
@@ -159,69 +172,77 @@ import diagram from '../diagram.json'
       var nodcontext =
                            this.$("ContextMenu", 
                            this.$("ContextMenuButton",
+                           this.$(go.TextBlock, "Number",{margin:new go.Margin(0,25,0,3)},),
+                               { click:function(e, button) {
+                                     changeType(diagram,"Number",num,button.part)                                      
+                               }
+                              },
+                           this.$(go.Picture, {width: 20, height: 17,source:num ,alignment:go.Spot.TopRight,background:"#424242" })
+                            ),
+                           this.$("ContextMenuButton",
                                this.$(go.TextBlock, "Alpha",{margin:new go.Margin(0,25,0,3)},),
                                    { click:function(e, button) {
-                                         changeType(diagram,"Alpha",menu,button.part)                                      
+                                         changeType(diagram,"Alpha",A,button.part)                                      
                                    }
                                   },
-                               this.$(go.Picture, {width: 20, height: 17,source:menu ,alignment:go.Spot.TopRight,background:"#424242" })
+                               this.$(go.Picture, {width: 20, height: 17,source:A ,alignment:go.Spot.TopRight,background:"#424242" })
                                 ),
                           
                           this.$("ContextMenuButton",
                                this.$(go.TextBlock, "Text",{margin:new go.Margin(0,25,0,3)}),
                                  {  click: function(e, button) {
-                                           changeType(diagram,"Text",Corbeille,button.part) 
+                                           changeType(diagram,"Text",T,button.part) 
                                  }
                                  },
-                                 this.$(go.Picture, {width: 20, height: 17,source:Corbeille,alignment:go.Spot.TopRight,background:"#424242"  }),
+                                 this.$(go.Picture, {width: 20, height: 20,source:T,alignment:go.Spot.TopRight,background:"#424242"  }),
                                  ),
                           this.$("ContextMenuButton",
                            this.$(go.TextBlock, "Date",{margin:new go.Margin(0,25,0,3)}),
                                  {  click: function(e, button) {
-                                            changeType(diagram,"Date",Corbeille,button.part) 
+                                            changeType(diagram,"Date",date,button.part) 
                                  }
                                 },
-                                 this.$(go.Picture, {width: 20, height: 17,source:Corbeille,alignment:go.Spot.TopRight,background:"#424242"  }),
+                              this.$(go.Picture, {width: 20, height: 17,source:date,alignment:go.Spot.TopRight,background:"#424242"  }),
                                  )
                                  ,
                           this.$("ContextMenuButton",
                            this.$(go.TextBlock, "Time",{margin:new go.Margin(0,25,0,3)}),
                                  {  click: function(e, button) {
-                                  changeType(diagram,"Time",Corbeille,button.part) 
+                                  changeType(diagram,"Time",time,button.part) 
                                  }},
-                                 this.$(go.Picture, {width: 20, height: 17,source:Corbeille,alignment:go.Spot.TopRight,background:"#424242"  }),
+                                 this.$(go.Picture, {width: 20, height: 17,source:time,alignment:go.Spot.TopRight,background:"#424242"  }),
                                  )
                                  ,
                           this.$("ContextMenuButton",
                            this.$(go.TextBlock, "Boolean",{margin:new go.Margin(0,25,0,3)}),
                                  {  click: function(e, button) {
-                                  changeType(diagram,"Boolean",Corbeille,button.part) 
+                                  changeType(diagram,"Boolean",bol,button.part) 
                                  }},
-                                 this.$(go.Picture, {width: 20, height: 17,source:Corbeille,alignment:go.Spot.TopRight,background:"#424242"  }),
+                                 this.$(go.Picture, {width: 20, height: 17,source:bol,alignment:go.Spot.TopRight,background:"#424242"  }),
                                  )
                                  ,
                           this.$("ContextMenuButton",
                            this.$(go.TextBlock, "Picture",{margin:new go.Margin(0,25,0,3)}),
                                  {  click: function(e, button) {
-                                  changeType(diagram,"Picture",Corbeille,button.part) 
+                                  changeType(diagram,"Picture",picture,button.part) 
                                  }},
-                                 this.$(go.Picture, {width: 20, height: 17,source:Corbeille,alignment:go.Spot.TopRight,background:"#424242"  }),
+                                 this.$(go.Picture, {width: 20, height: 17,source:picture,alignment:go.Spot.TopRight,background:"#424242"  }),
                                  )
                                  ,
                           this.$("ContextMenuButton",
                            this.$(go.TextBlock, "Blob",{margin:new go.Margin(0,25,0,3)}),
                                  {  click: function(e, button) {
-                                  changeType(diagram,"Blob",Corbeille,button.part) 
+                                  changeType(diagram,"Blob",blob,button.part) 
                                  }},
-                                 this.$(go.Picture, {width: 20, height: 17,source:Corbeille,alignment:go.Spot.TopRight,background:"#424242"  }),
+                                 this.$(go.Picture, {width: 20, height: 17,source:blob,alignment:go.Spot.TopRight,background:"#424242"  }),
                                  )
                                  ,
                           this.$("ContextMenuButton",
                            this.$(go.TextBlock, "Object",{margin:new go.Margin(0,25,0,3)}),
                                  {  click: function(e, button) {
-                                  changeType(diagram,"Object",Corbeille,button.part) 
+                                  changeType(diagram,"Object",brack,button.part) 
                                  }},
-                                 this.$(go.Picture, {width: 20, height: 17,source:Corbeille,alignment:go.Spot.TopRight,background:"#424242"  }),
+                                 this.$(go.Picture, {width: 20, height: 17,source:brack,alignment:go.Spot.TopRight,background:"#424242"  }),
                                  ))
     /*  diagram.commandHandler.pasteSelection = function() {
                               var itemClipboard =(diagram.commandHandler as any)._itemClipboard;
@@ -259,7 +280,7 @@ import diagram from '../diagram.json'
                                            {var node =button.part.adornedObject.panel.panel.panel.part 
                                              if (node !== null && node !==undefined) {
                                               diagram.startTransaction();
-                                              diagram.model.addArrayItem(node.data.items,{name:"new field",type:"gju",source:one,isPrimarykey:false,isInvisible:false,isUnique:false,isNeverNull:false,isindexed:false});
+                                              diagram.model.addArrayItem(node.data.items,{name:"new field",type:"Alpha",isPrimarykey:false,isInvisible:false,isUnique:false,isNeverNull:false,isindexed:false,source:A});
                                               diagram.commitTransaction("item added");
                                              }}},
                                     },
@@ -624,25 +645,26 @@ import diagram from '../diagram.json'
                                                                                                        click: function(e: any, obj:  any ){
                                                                                                               var link = obj.part.adornedPart;
                                                                                                               var fnode = link.fromNode;
-                                                                                                              var arr = fnode.data.items;
-                                                                                                               
+                                                                                                              var arr = fnode.data.items; 
+                                                                                                              var foreign:any[]=new Array()
+                                                                                                              for (var i = arr.length - 1; i >= 0; --i) 
+                                                                                                              {
+                                                                                                              if(arr[i].type==link.toNode.data.key)
+                                                                                                              {foreign.push(arr[i])
+                                                                                                              }}
                                                                                                                if(link!==null)
-                                                                                                                 { for (var i = arr.length - 1; i >= 0; --i) 
-                                                                                                                  {
-                                                                                                                  if(arr[i].type==link.toNode.data.key)
-                                                                                                                  {diagram.startTransaction("remove foreign key");
-                                                                                                                  diagram.model.removeArrayItem(arr[i] );
-                                                                                                                  diagram.commitTransaction("remove foreign key");
-                                                                                                                  }}
-                                                                                                                   diagram.startTransaction("remove link");
+                                                                                                                 { diagram.startTransaction("remove foreign key");
+                                                                                                                   diagram.model.removeArrayItem(foreign);
                                                                                                                    diagram.remove(link);
-                                                                                                                   
-                                                                                                                   diagram.commitTransaction("remove link"); }} },  // define click behavior for Button in Adornment
+                                                                                                                   diagram.commitTransaction("remove foreign key");
+
+                                                                                                                  
+                                                                                                                  foreign[0]=null }} },  // define click behavior for Button in Adornment
                                                                                  this.$(go.TextBlock, "Delete",  // the Button content
                                                                                                  { font: "bold 6pt sans-serif" })
                                                                           ),
                                                                           )  // end Adornment
-                            },
+                            }, 
                                           
                                          
                                                                                   this.$(go.Shape) ,
