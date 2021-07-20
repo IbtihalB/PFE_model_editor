@@ -1,6 +1,21 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
+import { unmountComponentAtNode } from "react-dom";
 /*
+let container:any = null;
+beforeEach(() => {
+  // met en place un élément DOM comme cible de rendu
+  container = document.createElement("div");
+  document.body.appendChild(container);
+});
+
+afterEach(() => {
+  // nettoie en sortie de test
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
+});
+
 describe("minimal", () => {
   beforeAll(async () => {
     await Page.goto('index.html');

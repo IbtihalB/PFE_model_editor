@@ -8,6 +8,8 @@ import { Store } from '../Store/Store';
 import go from 'gojs';
 import { Fragment } from 'react';
 import diagram from '../diagram.json'
+import Field_Propreties from '../Components/Propreties/Field_Propreties';
+import Link_Propreties from '../Components/Propreties/Link_Propreties';
 
 
  export var model:any=JSON.stringify(diagram);
@@ -32,8 +34,10 @@ import diagram from '../diagram.json'
     <button id="saveModel" onClick={save}>Save</button></nav>
         <main>  <DiagramP></DiagramP> </main>
         <div  className="sidebar"> <Catalogue></Catalogue></div>
-        <div  id="right_sidebar"> <Node_Propreties />  </div>
-        
+        <div  id="right_sidebarN"> <Node_Propreties />  </div>
+        <div  id="right_sidebarF"> <Field_Propreties />  </div>
+        <div  id="right_sidebarL"> <Link_Propreties />  </div>
+
         </div>
        
      </Fragment>
